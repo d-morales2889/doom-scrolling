@@ -1,3 +1,4 @@
+import 'package:doomscrolling_mobile_app/constants/color_constants.dart';
 import 'package:doomscrolling_mobile_app/screens/onboarding_screens/quiz_questions.dart';
 import 'package:doomscrolling_mobile_app/screens/onboarding_screens/quiz_starter_screen.dart';
 import 'package:doomscrolling_mobile_app/screens/register_screen.dart';
@@ -31,25 +32,21 @@ class MyApp extends StatelessWidget {
   }
 }
 
-// Brand colors
-const Color kPrimaryColor = Color(0xFF4F46E5); // Electric Indigo
-const Color kWarningColor = Color(0xFFFB7185); // Soft Coral
-const Color kLightBackground = Color(0xFFF8FAFC);
-const Color kDarkBackground = Color(0xFF0F172A);
-
 ThemeData _buildLightTheme() {
   final base = ThemeData.light(useMaterial3: true);
   return base.copyWith(
-    scaffoldBackgroundColor: kLightBackground,
-    colorScheme:
-        base.colorScheme.copyWith(primary: kPrimaryColor, error: kWarningColor),
+    scaffoldBackgroundColor: BrandColors.lightBackground,
+    colorScheme: base.colorScheme.copyWith(
+      primary: BrandColors.primary,
+      error: BrandColors.warning,
+    ),
     textTheme: GoogleFonts.interTextTheme().apply(
-      bodyColor: const Color(0xFF1E293B),
-      displayColor: const Color(0xFF1E293B),
+      bodyColor: LightTextColors.primary,
+      displayColor: LightTextColors.primary,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: kPrimaryColor,
+        backgroundColor: BrandColors.primary,
         foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
@@ -57,24 +54,28 @@ ThemeData _buildLightTheme() {
       ),
     ),
     cardTheme: const CardTheme(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20)))),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
+    ),
   );
 }
 
 ThemeData _buildDarkTheme() {
   final base = ThemeData.dark(useMaterial3: true);
   return base.copyWith(
-    scaffoldBackgroundColor: kDarkBackground,
-    colorScheme:
-        base.colorScheme.copyWith(primary: kPrimaryColor, error: kWarningColor),
+    scaffoldBackgroundColor: BrandColors.darkBackground,
+    colorScheme: base.colorScheme.copyWith(
+      primary: BrandColors.primary,
+      error: BrandColors.warning,
+    ),
     textTheme: GoogleFonts.interTextTheme().apply(
-      bodyColor: const Color(0xFFE6EEF8),
-      displayColor: const Color(0xFFE6EEF8),
+      bodyColor: DarkTextColors.primary,
+      displayColor: DarkTextColors.primary,
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: kPrimaryColor,
+        backgroundColor: BrandColors.primary,
         foregroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
@@ -82,7 +83,9 @@ ThemeData _buildDarkTheme() {
       ),
     ),
     cardTheme: const CardTheme(
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20)))),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
+    ),
   );
 }
