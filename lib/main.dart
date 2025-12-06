@@ -1,5 +1,5 @@
 import 'package:doomscrolling_mobile_app/constants/color_constants.dart';
-import 'package:doomscrolling_mobile_app/screens/onboarding_screens/quiz_questions.dart';
+import 'package:doomscrolling_mobile_app/screens/onboarding_screens/quiz_questions_screen.dart';
 import 'package:doomscrolling_mobile_app/screens/onboarding_screens/quiz_starter_screen.dart';
 import 'package:doomscrolling_mobile_app/screens/register_screen.dart';
 import 'package:doomscrolling_mobile_app/screens/welcome_screen.dart';

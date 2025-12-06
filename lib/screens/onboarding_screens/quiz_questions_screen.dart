@@ -1,5 +1,6 @@
 import 'package:doomscrolling_mobile_app/constants/animation_constants.dart';
 import 'package:doomscrolling_mobile_app/constants/color_constants.dart';
+import 'package:doomscrolling_mobile_app/screens/onboarding_screens/quiz_calculation_screen.dart';
 import 'package:flutter/material.dart';
 
 class QuizQuestionsScreen extends StatefulWidget {
@@ -201,6 +202,34 @@ class _QuizQuestionsScreenState extends State<QuizQuestionsScreen>
     );
   }
 
+  bool _areAllQuestionsAnswered() {
+    return _selections.length == _questions.length &&
+        _selections.values.every((s) => s.isNotEmpty);
+  }
+
+  double _getDailyHours() {
+    // Get screen_time question answer
+    final screenTimeSelection = _selections['screen_time'];
+    if (screenTimeSelection == null || screenTimeSelection.isEmpty) {
+      return 2.0; // Default fallback
+    }
+
+    final selectedIndex = screenTimeSelection.first;
+    // Map options to hours: 'Less than 1 hour', '1 - 3 hours', '3 - 5 hours', '5+ hours'
+    switch (selectedIndex) {
+      case 0:
+        return 0.5; // Less than 1 hour
+      case 1:
+        return 2.0; // 1-3 hours (use middle)
+      case 2:
+        return 4.0; // 3-5 hours (use middle)
+      case 3:
+        return 6.0; // 5+ hours
+      default:
+        return 2.0;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -314,23 +343,20 @@ class _QuizQuestionsScreenState extends State<QuizQuestionsScreen>
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
               child: _SpringButton(
-                onPressed: () {
-                  // Show celebration animation
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: const Text(
-                        '🌱 Beautiful. Your mindful journey begins now.',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      backgroundColor: BrandColors.primary,
-                      behavior: SnackBarBehavior.floating,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      duration: const Duration(seconds: 3),
-                    ),
-                  );
-                },
+                onPressed: _areAllQuestionsAnswered()
+                    ? () {
+                        // Navigate to calculation screen
+                        final dailyHours = _getDailyHours();
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => QuizCalculationScreen(
+                              dailyHours: dailyHours,
+                            ),
+                          ),
+                        );
+                      }
+                    : null,
+                isEnabled: _areAllQuestionsAnswered(),
                 child: const Text(
                   'Create My Path',
                   style: TextStyle(
@@ -566,10 +592,12 @@ class _SpringButton extends StatefulWidget {
   const _SpringButton({
     required this.onPressed,
     required this.child,
+    this.isEnabled = true,
   });
 
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Widget child;
+  final bool isEnabled;
 
   @override
   State<_SpringButton> createState() => _SpringButtonState();
@@ -616,10 +644,10 @@ class _SpringButtonState extends State<_SpringButton>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown: _handleTapDown,
-      onTapUp: _handleTapUp,
-      onTapCancel: _handleTapCancel,
-      onTap: widget.onPressed,
+      onTapDown: widget.isEnabled ? _handleTapDown : null,
+      onTapUp: widget.isEnabled ? _handleTapUp : null,
+      onTapCancel: widget.isEnabled ? _handleTapCancel : null,
+      onTap: widget.isEnabled ? widget.onPressed : null,
       child: AnimatedBuilder(
         animation: _scaleAnimation,
         builder: (context, child) {
@@ -628,35 +656,47 @@ class _SpringButtonState extends State<_SpringButton>
             child: child,
           );
         },
-        child: Container(
+        child: AnimatedContainer(
+          duration: AnimationDurations.fast,
           width: double.infinity,
           padding: const EdgeInsets.symmetric(vertical: 16),
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [
-                BrandColors.primary,
-                BrandColors.primary.withOpacity(0.9),
-              ],
+              colors: widget.isEnabled
+                  ? [
+                      BrandColors.primary,
+                      BrandColors.primary.withOpacity(0.9),
+                    ]
+                  : [
+                      BrandColors.primary.withOpacity(0.3),
+                      BrandColors.primary.withOpacity(0.3),
+                    ],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(32),
-            boxShadow: [
-              BoxShadow(
-                color: BrandColors.primary.withOpacity(0.25),
-                offset: const Offset(0, 6),
-                blurRadius: 20,
-              ),
-              BoxShadow(
-                color: BrandColors.primary.withOpacity(0.12),
-                offset: const Offset(0, 2),
-                blurRadius: 10,
-              ),
-            ],
+            boxShadow: widget.isEnabled
+                ? [
+                    BoxShadow(
+                      color: BrandColors.primary.withOpacity(0.25),
+                      offset: const Offset(0, 6),
+                      blurRadius: 20,
+                    ),
+                    BoxShadow(
+                      color: BrandColors.primary.withOpacity(0.12),
+                      offset: const Offset(0, 2),
+                      blurRadius: 10,
+                    ),
+                  ]
+                : null,
           ),
           alignment: Alignment.center,
           child: DefaultTextStyle(
-            style: const TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: widget.isEnabled
+                  ? Colors.white
+                  : Colors.white.withOpacity(0.5),
+            ),
             child: widget.child,
           ),
         ),
