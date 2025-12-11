@@ -1,5 +1,6 @@
 import 'package:doomscrolling_mobile_app/constants/animation_constants.dart';
 import 'package:doomscrolling_mobile_app/constants/color_constants.dart';
+import 'package:doomscrolling_mobile_app/screens/onboarding_screens/sympton_selection_screen.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -178,8 +179,11 @@ class _QuizCalculationScreenState extends State<QuizCalculationScreen>
                   padding: const EdgeInsets.fromLTRB(24, 8, 24, 24),
                   child: _ContinueButton(
                     onPressed: () {
-                      // TODO: Navigate to next screen
-                      Navigator.of(context).pop();
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => const SymptomSelectionScreen(),
+                        ),
+                      );
                     },
                   ),
                 ),
