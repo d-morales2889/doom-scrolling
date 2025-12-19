@@ -1,5 +1,6 @@
 import 'package:doomscrolling_mobile_app/constants/animation_constants.dart';
 import 'package:doomscrolling_mobile_app/constants/color_constants.dart';
+import 'package:doomscrolling_mobile_app/screens/onboarding_screens/social_proof_screen.dart';
 import 'package:flutter/material.dart';
 
 class EducationalCarouselScreen extends StatefulWidget {
@@ -76,8 +77,11 @@ class _EducationalCarouselScreenState extends State<EducationalCarouselScreen> {
         curve: AnimationCurves.easeOut,
       );
     } else {
-      // TODO: Navigate to next screen
-      Navigator.of(context).pop();
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => const SocialProofScreen(),
+        ),
+      );
     }
   }
 
@@ -88,8 +92,6 @@ class _EducationalCarouselScreenState extends State<EducationalCarouselScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isLastPage = _currentPage == _pages.length - 1;
-
     return Scaffold(
       body: Stack(
         children: [
@@ -146,7 +148,7 @@ class _EducationalCarouselScreenState extends State<EducationalCarouselScreen> {
                   // Continue button
                   _ContinueButton(
                     onPressed: _nextPage,
-                    label: isLastPage ? 'Get Started' : 'Continue',
+                    label: 'Continue',
                   ),
                 ],
               ),
