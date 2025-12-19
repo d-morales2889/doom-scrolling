@@ -50,7 +50,7 @@ class _EducationalCarouselScreenState extends State<EducationalCarouselScreen> {
     CarouselPage(
       title: 'The Mindful Method',
       subtitle:
-          'We don\'t just block apps. We use CBT and gamification to permanently rewire your habits.',
+          'We use CBT and gamification to permanently rewire your habits.',
       category: 'The Solution',
       emoji: '🌱',
       gradient: [Color(0xFF6B9080), Color(0xFF4A7C6F)],
