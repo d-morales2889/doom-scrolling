@@ -1,5 +1,6 @@
 import 'package:doomscrolling_mobile_app/constants/animation_constants.dart';
 import 'package:doomscrolling_mobile_app/constants/color_constants.dart';
+import 'package:doomscrolling_mobile_app/screens/onboarding_screens/goal_screen.dart';
 import 'package:flutter/material.dart';
 
 class SocialProofScreen extends StatefulWidget {
@@ -152,8 +153,11 @@ class _SocialProofScreenState extends State<SocialProofScreen>
               padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
               child: _SpringButton(
                 onPressed: () {
-                  // TODO: Navigate to next screen
-                  Navigator.of(context).pop();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const GoalScreen(),
+                    ),
+                  );
                 },
                 child: const Text(
                   'Continue',
