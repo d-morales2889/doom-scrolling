@@ -1,5 +1,6 @@
 import 'package:doomscrolling_mobile_app/constants/animation_constants.dart';
 import 'package:doomscrolling_mobile_app/constants/color_constants.dart';
+import 'package:doomscrolling_mobile_app/screens/onboarding_screens/personalized_plan_screen.dart';
 import 'package:flutter/material.dart';
 
 class GoalScreen extends StatefulWidget {
@@ -178,8 +179,12 @@ class _GoalScreenState extends State<GoalScreen>
               child: _SpringButton(
                 onPressed: _selectedGoals.isNotEmpty
                     ? () {
-                        // TODO: Navigate to next screen
-                        Navigator.of(context).pop();
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const PersonalizedPlanScreen(),
+                          ),
+                        );
                       }
                     : null,
                 isEnabled: _selectedGoals.isNotEmpty,
