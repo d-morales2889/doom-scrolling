@@ -1,5 +1,6 @@
 import 'package:doomscrolling_mobile_app/constants/animation_constants.dart';
 import 'package:doomscrolling_mobile_app/constants/color_constants.dart';
+import 'package:doomscrolling_mobile_app/screens/onboarding_screens/educational_carousel_screen.dart';
 import 'package:flutter/material.dart';
 
 class SymptomSelectionScreen extends StatefulWidget {
@@ -247,8 +248,12 @@ class _SymptomSelectionScreenState extends State<SymptomSelectionScreen>
               child: _SpringButton(
                 onPressed: _selectedSymptoms.isNotEmpty
                     ? () {
-                        // TODO: Navigate to next screen
-                        Navigator.of(context).pop();
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const EducationalCarouselScreen(),
+                          ),
+                        );
                       }
                     : null,
                 isEnabled: _selectedSymptoms.isNotEmpty,
