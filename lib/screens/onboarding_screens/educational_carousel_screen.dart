@@ -19,7 +19,7 @@ class _EducationalCarouselScreenState extends State<EducationalCarouselScreen> {
       title: 'The Dopamine Trap',
       subtitle:
           'Social apps are engineered to hijack your brain\'s reward system. It isn\'t a lack of willpower; it\'s biology.',
-      category: 'The Science (Validation)',
+      category: 'The Science',
       emoji: '🧠',
       gradient: [Color(0xFF6B9080), Color(0xFF4A7C6F)],
     ),
@@ -27,7 +27,7 @@ class _EducationalCarouselScreenState extends State<EducationalCarouselScreen> {
       title: 'Cognitive Erosion',
       subtitle:
           'Constant switching thins your prefrontal cortex, destroying your ability to focus on deep work.',
-      category: 'The Damage (Physical)',
+      category: 'The Damage',
       emoji: '⚡',
       gradient: [Color(0xFFC77D58), Color(0xFFB06847)],
     ),
@@ -35,7 +35,7 @@ class _EducationalCarouselScreenState extends State<EducationalCarouselScreen> {
       title: '"Popcorn Brain"',
       subtitle:
           'Your brain is now wired for 15-second clips, making real life feel slow, boring, and anxious.',
-      category: 'The Symptom (Mental)',
+      category: 'The Symptom',
       emoji: '🍿',
       gradient: [Color(0xFFA8AABC), Color(0xFF8E90A2)],
     ),
@@ -43,7 +43,7 @@ class _EducationalCarouselScreenState extends State<EducationalCarouselScreen> {
       title: 'Neuroplasticity',
       subtitle:
           'The good news? Your brain is resilient. You can reset your dopamine baseline.',
-      category: 'The Hope (Neuroscience)',
+      category: 'The Hope',
       emoji: '✨',
       gradient: [Color(0xFF6B9080), Color(0xFF5A8070)],
     ),
@@ -51,7 +51,7 @@ class _EducationalCarouselScreenState extends State<EducationalCarouselScreen> {
       title: 'The Mindful Method',
       subtitle:
           'We don\'t just block apps. We use CBT and gamification to permanently rewire your habits.',
-      category: 'The Solution (The Pitch)',
+      category: 'The Solution',
       emoji: '🌱',
       gradient: [Color(0xFF6B9080), Color(0xFF4A7C6F)],
     ),
