@@ -1,5 +1,6 @@
 import 'package:doomscrolling_mobile_app/constants/animation_constants.dart';
 import 'package:doomscrolling_mobile_app/constants/color_constants.dart';
+import 'package:doomscrolling_mobile_app/screens/onboarding_screens/paywall_screen.dart';
 import 'package:flutter/material.dart';
 
 class PersonalizedPlanScreen extends StatefulWidget {
@@ -158,8 +159,11 @@ class _PersonalizedPlanScreenState extends State<PersonalizedPlanScreen>
                     ),
                     child: _SpringButton(
                       onPressed: () {
-                        // TODO: Navigate to main app
-                        Navigator.of(context).pop();
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const PaywallScreen(),
+                          ),
+                        );
                       },
                       child: const Text(
                         'Start My Journey',
