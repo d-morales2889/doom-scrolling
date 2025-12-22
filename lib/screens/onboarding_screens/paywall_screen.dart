@@ -1,5 +1,6 @@
 import 'package:doomscrolling_mobile_app/constants/animation_constants.dart';
 import 'package:doomscrolling_mobile_app/constants/color_constants.dart';
+import 'package:doomscrolling_mobile_app/screens/onboarding_screens/motivational_carousel_screen.dart';
 import 'package:flutter/material.dart';
 
 class PaywallScreen extends StatefulWidget {
@@ -242,8 +243,12 @@ class _PaywallScreenState extends State<PaywallScreen>
                 ),
                 child: _SpringButton(
                   onPressed: () {
-                    // TODO: Handle subscription purchase
-                    Navigator.of(context).pop();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const MotivationalCarouselScreen(),
+                      ),
+                    );
                   },
                   child: Text(
                     'Continue with ${_plans.firstWhere((p) => p.id == _selectedPlan).title}',
