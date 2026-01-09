@@ -1,5 +1,6 @@
 import 'package:doomscrolling_mobile_app/constants/animation_constants.dart';
 import 'package:doomscrolling_mobile_app/constants/color_constants.dart';
+import 'package:doomscrolling_mobile_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class MotivationalCarouselScreen extends StatefulWidget {
@@ -94,8 +95,11 @@ class _MotivationalCarouselScreenState
         curve: AnimationCurves.easeOut,
       );
     } else {
-      // TODO: Navigate to main app
-      Navigator.of(context).pop();
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
+        ),
+      );
     }
   }
 

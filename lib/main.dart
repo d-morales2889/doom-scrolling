@@ -53,7 +53,7 @@ ThemeData _buildLightTheme() {
         elevation: 0,
       ),
     ),
-    cardTheme: const CardTheme(
+    cardTheme: const CardThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
@@ -82,7 +82,7 @@ ThemeData _buildDarkTheme() {
         elevation: 0,
       ),
     ),
-    cardTheme: const CardTheme(
+    cardTheme: const CardThemeData(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
